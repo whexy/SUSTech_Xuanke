@@ -41,6 +41,7 @@ def rush(num):
         r = s.get(urls)
         result = str(r.text)
         print(result)
+        time.sleep(random.random()*random.random())
         if result.find("true") >= 1:
             return True
         else:
@@ -73,6 +74,7 @@ if __name__ == '__main__':
         key = re.findall('href="(.+)" target="blank">进入选课', r.text)
         if len(key) > 0:
             break
+        time.sleep(random.random()*random.random())
 
     k = key[0]
     s.get('https://jwxt.sustech.edu.cn' + k)
