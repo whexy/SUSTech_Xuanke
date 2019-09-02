@@ -44,8 +44,7 @@ def rush(num):
         time.sleep(random.random()*random.random())
         if result.find("true") >= 1:
             return True
-        else:
-            return False
+    return False
 
 
 if __name__ == '__main__':
