@@ -35,7 +35,7 @@ def rush_group(classList):
 
 def rush(num):
     operlist = ["bxqjhxkOper", "fawxkOper", "knjxkOper", "ggxxkxkOper"]
-    url = "https://jwxt.sustech.edu.cn/jsxsd/xsxkkc/"
+    url = "http://jwxt.sustech.edu.cn/jsxsd/xsxkkc/"
     urllist = [url+i+"?jx0404id="+num+"&xkzy=&trjf=" for i in operlist]
     for urls in urllist:
         r = s.get(urls)
@@ -52,7 +52,7 @@ if __name__ == '__main__':
         init_data = f.read()
         classList = json.loads(init_data)
     r = s.get(
-        'https://cas.sustech.edu.cn/cas/login?service=http%3A%2F%2Fjwxt.sustech.edu.cn%2Fjsxsd%2Fxsxk%2Fxklc_list%3FVes632DSdyV%3DNEW_XSD_PYGL')
+        'http://cas.sustech.edu.cn/cas/login?service=http%3A%2F%2Fjwxt.sustech.edu.cn%2Fjsxsd%2Fxsxk%2Fxklc_list%3FVes632DSdyV%3DNEW_XSD_PYGL')
     data = {
         'username': '',  # Here inputs your StudentID
         'password': '',  # Here inputs your password
@@ -62,21 +62,21 @@ if __name__ == '__main__':
     }
 
     r = s.post(
-        'https://cas.sustech.edu.cn/cas/login?service=http%3A%2F%2Fjwxt.sustech.edu.cn%2Fjsxsd%2Fxsxk%2Fxklc_list%3FVes632DSdyV%3DNEW_XSD_PYGL', data)
+        'http://cas.sustech.edu.cn/cas/login?service=http%3A%2F%2Fjwxt.sustech.edu.cn%2Fjsxsd%2Fxsxk%2Fxklc_list%3FVes632DSdyV%3DNEW_XSD_PYGL', data)
     print(r)
     print("CAS验证成功")
     print("教务系统启动")
     print("等待选课开始")
     while True:
         r = s.get(
-            'https://jwxt.sustech.edu.cn/jsxsd/xsxk/xklc_list?Ves632DSdyV=NEW_XSD_PYGL')
+            'http://jwxt.sustech.edu.cn/jsxsd/xsxk/xklc_list?Ves632DSdyV=NEW_XSD_PYGL')
         key = re.findall('href="(.+)" target="blank">进入选课', r.text)
         if len(key) > 0:
             break
         time.sleep(random.random()*random.random())
 
     k = key[0]
-    s.get('https://jwxt.sustech.edu.cn' + k)
+    s.get('http://jwxt.sustech.edu.cn' + k)
     print("------抢课开始------")
     rush_manager()
     s.close()
