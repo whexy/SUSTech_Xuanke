@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class=" js no-mobile desktop no-ie ff ff72 cas-section gradient rgba opacity textshadow multiplebgs boxshadow borderimage borderradius no-cssreflections csstransforms csstransitions no-touch retina fontface domloaded w-394 gt-240 gt-320 lt-480 lt-640 lt-768 lt-800 lt-1024 lt-1280 lt-1440 lt-1680 lt-1920 portrait no-landscape" id="login-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>登录 - CAS – Central Authentication Service</title>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/font-awesome.css"><link rel="stylesheet" href="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/bootstrap.css"><link rel="stylesheet" href="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/cas.css"><link rel="icon" href="https://cas.sustech.edu.cn/cas/favicon.ico" type="image/x-icon"><script src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/jquery_002.js"></script>
+    <script src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/jquery-ui.js"></script>
+    <script src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/jquery.js"></script>
+    <!--<script src="//www.google.com/recaptcha/api.js" async defer th:if="${recaptchaSiteKey}"></script>--><script src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/bootstrap.js"></script>
+    <script>
+        /*<![CDATA[*/
+        var trackGeoLocation = false;
+//        var googleAnalyticsTrackingId = null;
+//        if (googleAnalyticsTrackingId != null && googleAnalyticsTrackingId != '') {
+//            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+//                        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+//                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+//            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+//            ga('create', googleAnalyticsTrackingId, 'auto');
+//            ga('send', 'pageview');
+//        }
+        /*]]>*/
+    </script>
+</head>
+
+<body id="cas" class="login">
+<div id="container" class="container">
+    <div style="float:right;color:white;">
+        <form style="display:inline;" method="post"><input type="hidden" name="locale" value="zh_CN"><button style="color:white; text-decoration: none;" class="btn-link" type="submit">中文</button></form>|
+        <form style="display:inline;" method="post"><input type="hidden" name="locale" value="en"><button style="color:white; text-decoration: none;" class="btn-link" type="submit">En</button></form>
+    </div>
+    <header>
+    <div id="logo" title="转到南方科技大学网站首页">SUSTech</div>
+    <!--<h1>Apereo Central Authentication Service (CAS)</h1>--></header>
+<div id="content">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="box" id="login">
+    <div class="login-header">
+        <h2>登录</h2>
+        <span class="fa-stack fa-2x hidden-xs">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+        </span>
+    </div>
+
+    <form method="post" id="fm1">
+
+        <h2>请输入您的用户名和密码.</h2>
+
+        <section class="row">
+            <label for="username">用户名:</label>
+
+            <div>
+                <input class="required" id="username" size="25" tabindex="1" type="text" accesskey="n" autocomplete="off" name="username"></div>
+        </section>
+
+        <section class="row">
+            <label for="password">密　码:</label>
+            
+            <div>
+                <input class="required" type="password" id="password" size="25" tabindex="2" accesskey="p" autocomplete="off" name="password" value=""><span id="capslock-on" style="display:none;">
+                    <p>
+                        <i class="fa fa-exclamation-circle"></i>
+                        <span>大写键已打开</span>
+                    </p>
+                </span>
+            </div>
+        </section>
+        <section class="row check">
+            </section>
+        
+        <section class="row btn-row">
+            <input type="hidden" name="execution" value="12d6ebbd-470f-4e04-be02-a711183586e5_ZXlKaGJHY2lPaUpJVXpVeE1pSjkuWW1wM2IzWTFjbGx0VG5ZM01HUktiRE5qVG5Gd1dGVjJkVlk0UzJSMllWSjRiRGc1WkVnNVpGazVibFZrY1ZGRlJGVkxNMkpwZEhkM1RWcEpZblJUYUhocloyZENlaTk2VkhKM2EzQXlRalpRT1d0VFdqQXlaemt6WkhFdmNEaFRNbkJQYTNGdk4wMTNNalJrWkRoMFRtcGxZMDgyZFdOVlZubHVhRlpTUVhselEwNDNPVFpsTmpOb2NqRjNTRXhaZDNSVVdqbElUekZJUTI1VlJXTnFVSHA1ZGt4NFJUZHRla2hYU0RNNFRHMHpXSGxtZUd0d1kyZGhjRE5UU21FMVRXVlJkV3RvTjAwd2FUWlpURWRWV1hsM05WWm5ZbXhUZGxGR2JqUlpNbUZPWjNsS0szUnpXR3hyWWpaNFJVeDNjSFkyUVRKWWFqbENibE5SUTNSdlYyTmlNMXBPZW1ZeWFWZEhlbk5IV0hGYVFrdG1SekJJYUdwbGRuWmhkMVJxV0ZCV0sycHpia0pKY2pCaWVETTRVa1ZQWm1sTU5rVnpTR3RYYW5rNE5VcEdOMUozZFVrMFVsbEZSRzlKTW05UFZWcEpVMHRqWWxCbmNVTlJkbTlvWm1WM2RVbzJjbXA2ZVZkWlVreFdXbVZNU25kSk5UUk9UVGhoWlVVMFFuVk1kbWh0VjBWbFIxWklTbEpqVGpKU0szVm9lRFpQWlRWQlFVSkRWVXBFVm1sMVZsZFFja1pvYTFWS1VWUXJhbU41WkRCd1VXVTViM2hKYUhvdlVHeDBaMGRPTDNwM2NESlVTMWQzUm1SMlJVUmpZMUZuVFRkalMxcEtUVUU1VDAxWFlVMTFiblI2YzNFNWRrZGxTVzFSYW1rNGJHZHJkMDlGVURaelZVZHdkalozYlVsalREaGlRVE5yWkVSRVdGbFVOSFUxWnpSRVQyaHRiMjV3VG1GT1oxVXZjakl5WVZGamMwWXZaRFZMTDJObmJIUkVjSEU0Vms1V1ptVTBhRWRRVEZKT1RsUkhhVWh6UTFOdU1YWXZRMHhHYjBSbWRVaFVSbFpHTkZoSFpIcE1jVmR6UjBneFZYRldVRGN4VGxSQmEzRlRjbmxDTkZVMU5rSktjMGhYT0VRcllWQXpaV0Z0YUdkRVpEY3JiR05HSzNKbGRVdEtUbVZEYlM5VE9IbFlUa3RPTkdaSU1IUmlaVzF2UjFFNWJYRjBNMUpGVTJGdmFEZ3pRekJzZVRORlUxWmhielJITkVWRE1IVm1kbmhhUXk4dlozVnJXWE4xUmpCQlkzTnRibUVyYUVNMlJGcG1VWEpNT0hOVWRFNTRaMmRES3pSaldIQkhlbEJKU0ZSbWVscGhXV3BUZUM5cWVXcFFNbFpoVG1wcFltcDFSbXQ0TW1nNVV6UXpkWGg1YVdveGRYVlRNRk52Y0VaYU1IcFJSelphZEVod1ltUldPR2hpYVUxT1VVUkxWMFZ2WTJsbWRGZDNjbEpFVTJadE16ZFZWVk01UWxrck1FRXpNV0pNTWxGSFRrZHVXVGxIYjJseEt6bFRiazV2YmpoeWNqSlNPRk5QUjBOdVUzZDFSR1JIZEdGNk9YVnVRbEJwTkdkcGJHeGtlbEkyYlRJcmJXUm5XRUptUXpRck1GRlVNVWRUTUVkeFF6UlljM2QyYTNWQlZ6VlRSbUV5U3pCUFN6UjNOMDFLS3pGdE5XbFpSMjFNVFdnNWJFbHlZUzlKU0RZeldFbHhlVkF4YldveVlVRkVWa1Y0V0VaaFZIazVlV0p2WlZaNlRqUTRkVzVCYkZsdU4wdHdkMGRWZDB3d2FqaDBMMVZ3ZG5aVmJuVnZLMmx6UzJOeE0ycHFabTU2YWpaaFFuaHlRMmgwYW05bFpHdE1jVFJOVjJ4bFJYcDRNM2RzTUVsMmVFVXZibEZwWjJwYU5tczRkeXRrVTJGaU1IUkJlSHA1YmxCbVRERmlMMVExWVRKaU5uaFhPWGx4YkdwaFlUSnNSVko0U0doQ1MyVnlja0prZVhodmMwSm9hRlV3ZVZKSFpXdGpVVTAwT0ZKQ1NGWnZLMGt3ZDNwbWNrOXpTbk5sY1M5V0wySjVlWEpaVHpCQ2JFVkJlSEpZYVVSUGJYVjJUMHhXZFhONlNWbzNjVTFpYW1kbVFVRnhlV1ExWVV0SGVXSm1OMU5DZFVOa2FXdFBVVEZCY0U0Mk1uQnBNMEV5YldsbFJYVm9Vek5yVHpSd1V6RTFXVmczU2s1eWNqQlNXRmhuWTJKMllYUmhjVll3WTNsck9GRnBTWEIyU1Rkd1VqWlJUSEptV0d0VmFYSnZjQ3RhVldSM2VXTndZa1pFVGl0SGRHTkRSMDA1YldkeU5pOVFlV1ZXTkdSSFlYWnNWMDF2WVhoMkx6VXdXVGd3VTIxSWJuQkxhemR6UWpCU1V6UkNOWGRSUjIxVlREUkVhbHBLT0RsT2NWcHBjR3d2WkdOMU9YSlRiVFl4ZDFsWFdWZE5NRzVSUVdNemFEbGlhV3gwUlRWcEsyRlFNVTFXY1hSYVZrNUJPRFpqTkZaMFJtSktRVU5FZUhoQkwydzRkVzV3T0dwbmVUaEdSV0V2VEZGbVFsSTBXRVZhWmpZeWFXcGFTa05ZVTFaNVZVUlpjbWQxYTBSWVprTkhha2w2VW01RGFsVmxlamRvVDA5elRXNWpWelpoWm1saVpFeDJUekZKVEdORWVsaE9hbU5hTWtSdU9WbzVTMDVRVkhNNFZEVndNV2xzVFdwcFpIQTBlREJSWmtsQ1oyTkhaVXhJWkdOSlRGTkVNVlZPUjI0M2RUazNiR0ZCUkdsdE5sVkxka2R0VjFsT1dIaGpNVGxoYVhWcWVGbHdSMEpuUjBadEsyNDVNVE5FTjIxRGVXSnJNRFZtTkZVclFUSnFlbEZ5VDJrNWIzVnFjR0V4U21ReGJYUmlVVTQ0WkU5NmN6VlZjSGxhU1dGTGR6TnBkVnBGYjBRM1JUVmtPV1ZhVEVReFNXZ3ZSVXRNTjNWRk9HdFVRMnBaYmxwelExbGxlR3hJWlc5a04wNDFZM0ZaVVN0UlNWY3hXbFZZUVhWcFN6ZGtZbmhwUWpBeU1VWk9ZazVyV0d4YVlsSlZXVGhXVkZsU01rVndRVFp6ZGtrNWRtUnZOM0ZsTXpZeWFYaHNjMUp3YUZWa1NGRTRRMFpUTDNKdk4zUnVXbmx4TWpKU1oxQnVTR2xSY2pNMldFMW9ja2g0YUU1NmQyRXhOMlJTU21aMVdIaExPSEFyWVhRemNtbHlRM0Z2VlVOVk4yaG1kemRaSzB0VlRqWnVUMHB1T0V0c1luZzJUMFJGUTA1dGJHZHNVMWxDTm5wS2RWSm1UVWRCVW1oVGRHcDJjV3BLVUVsWFMxRXJXa2RyT1U1U1FVeEtUV0pGUzBsSlNrbExiakpCZFdoRVNIcGxVSEZvTjFOVUwzbzVPVGRIYlZnNE5Va3plSFZGTjJGSU4xUXlPVkUzZURsa1RqRkZSWGxNWmxZdmFrRnRXVFZKYm1sMVVqQlZVVUZ4YzB0QmF6WmFUM1JaYkV4b05XbEVSMFV3U1VGa2JFaDJUVzl1TDFoQmNHUTBSMGt4Y0VKT2R6RTBaMGsyVVhZNFQzTnhRbEJJUzFWMWVrZDZVa0ZNTjBWWFRsbDRaemNyVkd4T09URXZiMVI2TDJoWWRWZDFPRTkwUW5WSGNrZDZWRGxJYTNadFlsUnVlbUo1TDFwTlJWZHhObUZQTVdadVZqTjRSSGh3VUVsUVVGTkxjRTAwZHpCRFVXc3JUR1ptVkROU1RWVnZOR1pPVldsblMzTTFRMjlrVldGQ2F5dHNWVkF4ZFZFMFpETkVSekJVV21oMVJXOWhTV3htZDFaVVZUTm1Ramt4UkZGc1pHcHNWVkZZYlVsa1FUQTNabkJSY2pCUFRtWXZjRmtyU2xWSVRFOUJWWEpCTWxCQ1ZYZDJTVlUzYldzellsaE1lVkE0V2tKM0wzTk1hWGx2UTJSVlRIQTRjRk5oYUdwSVMwdGxSVXBtUzFSTGFuaEdkRVkyWjJOMVprZHhLMXBXU1RFNFRVTm5ObTkwWVc4eVVWRnhhVVpQU2tNclprdGtLM0JvVDJoTFFXOVphVlZNYUZGSGJGSkllVmxzT1hOeU5rcFJkbGxYYURKbFNtVkxlVUZvVWpkMFVqbDJkbkZoVTJjeFlrOXlOams1U1djMVNEVnRXVWRzUVVVNVRFeFZaa0UyTW10UmNXRldOMnR6ZUdjMlRXRkNUa012YzBoeVlYbzBTMlpqYzBGSVYweFRXbVZYYzFwT2Jrd3phR3czUnpWTk1ETmljekpTZWpnemJqTnBXR2xTVkZSUldpczRNa2s1TlZsa2NXbFpkRzgzTUhSd1EwaFZNVVJzY2pCck1VMXFRbGxpVkhJMVVVMDNRbGhZV2toMWRIVktPREJSUldOeFREQnlNR3RxVlhOUGNYVnBlbXhWT0U0dmVUbEtiMWQyYkRSellrTk5VRmMwYWpNMVNqRkdVM0oxY0ZSd1ZISk5SVUZPV0RGV1QzWmhNRzVXV25Gd2JqaGtTa0pHYmpORGQyOXZTRlZ2V0VreGJ6SXZiVzB3ZDA4cmVuUTNSelZ3WWxWUmRrcDZabTQyWkdSaE1rWlRSbE0wTjB0Q2FXdzBka2hDVWxOMlVVaGxWelo2UW0xWVVUVXZhRGRuUkdoMU5XVmhaa2xETWl0emVFdFNkRlZNTlRSME1sTkdjVmxrYmtNd05HVmFUVTh4U1hoNFNtdFdla0ZCTTFsNWVrcE1hbU40UVdGcE1VNWtOSFJTUzFoM1RXNXBVVUpCUkdGV1owMVhVVTFvYlVaME1raGtjelZ4VDJ0M01UaHFkM0J6WjBSd05uRnpMMWxtU1RCc1FUaEtUa3hpVVhwdFpuaHhVbTlsYm14T1JrVlNSamx1TVRsMFpHWXdVMUZuUTJrNVQySmFVbEV4YnpGU1owNXZUVzVQWVhjemRtRTFWbXBJVFRNMGExcFphazV5Wm1aeWRGVlFURnBRY1dGMlVsVmFPVzA0TlhkWFZrSlBSRUZwY0ZBd09XaFpaa3AwVVdkRVNUSnhXa1U0ZGxWUVQzTkNPRE4xVW5KWk5HZFNabXhGWlhoSWNIRTRaV2x0ZVhaUWJUTnBaVXM0VGtaVWFWVlVTa0V2YzJ0R1ZrOWpla2RsTjFGS1FqTlJNVWRIWWpVdll5OHZRaXRsWmxaVFpHRk1jVU14VldsWksxZHhURFJvWm1Jd1RITnpWR2xHT0N0eWFuTTJTV0UyUkdWSVNsUllNRVZOU0VoUmIwWlBWV1JqYVRoaFNVYzJWMGhVYlRObWNHSXhPRUpsWWxRMFpVUTRRbFY0ZG5KUlVrMWlUMllyV1VKWVpWSk9RbUphVDBRMGFtd3lWMmhsV1c5YVVGVnllR2g1VjFJelQyNW1SRzFrV1U5b1ptUm5hVEZwT0dGQ1FXUkNRV3Q2TVU1eVQwRlBWazVMUjIxbE5USm5aVlp6Wmk5a09HbGxRM2hQTUU0MmNIbGxPVkpaY1U1MllTOUVUbGd2WW5OU2MxRlljbXA1WkZjNVoyeG5Wa3hWU1V4RGVtRkpORzQ1YW1Wb1Z6aFpNRlZqUXpoNlptbFZlVlpWZVdGa1lWSkxUblJ5U21wSFRXcDBUbFF3Y0U1VVduQmFNbk42U1RoeU1YUTJWMlZGUVdocWMzWXdWMjE0V0hCbFlVcHBNbUYxZDBaU1dERjBNa0ZRTlhwU1VXMVNia3RTWWtWRWRuTlVSVlZwUTNSb1FYQmpla2xqV214TlEzUkpXVGMxTDBSTWNVb3ljMjVXVERKQk5VMU9WWEpZTnpnMlEySnpjbTV2Ykd0RGNuWkRSMGh0ZFc4M1NIbGFiM04zVkRaaE5qRnVjamhsVms1T1pHeGtUVmRQS3k5NWVFMUtSbmtyVEUxc1dqSlFaM040U1VOTmMzbDNRWFJ3SzBaelkwcHZWVlpoZG5GcFEzZFdUa1ZQWkZobk5VeGtaVk55VkdsU1J6UTVUM1J2Wm01VGNtUTJWa3BzUkhGT1RXazNia3M1WkRKQ2FVSTVhRGxJWTJzM1FVTlZXbW9yU1UxcVpYRmhRVVZvYzFWWGJrODVSMDEzVUhCM1dYRnBNemRGTjNGaFYzUTRSM0ZqZGxobk5rTXdLMjFzY1ROMWVERlFiazUyWjB0dVQxcDZTRE5FTW5GeGJHbzRlbUZSUmxOV01sTjVia05LY2tWSFUxWlVUR3B3ZDBwS1EwYzRaMHhRTnpsYVkxazNhVk5HZHpCWlJrRlVjbmhzZG5oME1IaFJkMjVzUTJ0TmVpODVTR1JYT1ZSeVUydG9Xak5XU1VwTVZVNUtlbmswY1RKWlduQmFXa2RYVmtnMFVFbFlNVEJtVW1SQldIaDBkVGMyVDFwUVFqRkVkMjgzVFZZNU1XVjZkUzl3Ym5kRmFTdEVaRlUyTUZsNVkzRm9PVzR2YzJWUFFYSk1VSHBEZDJSSlYwSTVTWFJZTUVwRVZrcFVSV3QxZHpSdlpHazROSE5aWTJ4RlZIYzBTSHBYTURKb1MxQkNVbTV1Tnk5U1JEVXpNak0zTDBWeGVXUmhNVVVyWjFscU1sTmlhWGN2YldNNWFsWjFSa04xVG5GTlZFcHRUMmRJVEU5MmVWUmpVVkl6UWtSMVZsTjNXR2hwYTJwdlJFRkpSVEJvY0RseWVFd3JMMkp2YVRWdlkwaFhSMmhZTlZnNWRpczRibkJuVUhGSEwzTmFibTFrVTFSaVJVcHRUa1JuY204dk5uVlFUalZKUmxjMU1EVTBWVXRYV25aSlFsbHRhRVpTYlZSR1ZWWkZUMWxRTUZNME5rVXdMMU0zVEZaNlVGQkJVVkJMV0hJdmFqVlhNVEo0VkVseWQxRktMM0EzTTJrMFJVNUxiVXQ1V1RkVVNXZDJVMlphU0hKNWNqTnRZMEozYTJWTE5sbGlkazVUVEhwTGNFOXJVekl6VjA0d2FUZEpkV2RpSzB0UFozSllXVWswYlRWWlVHeGpkRlZITUZscFMxRnRiRTVNTDA5TlF6ZG5MMEppVDNSS0szTjFWbTVLY2psQk5uUnZQUS5FRkJoZlBabURiajRXSWJVSE0xNW9tSUNWNjdnZkF3WG8zV2JBRHU0a1gxQXUtX3J3YWl4Zjc0Qm4tQ0N4VjVEbFJWUUtfUjUxNk1mZk5nTC10U2hpQQ=="><input type="hidden" name="_eventId" value="submit"><input type="hidden" name="geolocation"><input class="btn btn-submit btn-block" name="submit" accesskey="l" value="登录" tabindex="6" type="submit" disabled="disabled"></section>
+        </form>
+
+    <div>
+        <span class="fa fa-question-circle"></span>
+        <span><a href="https://cas.sustech.edu.cn/cas-management/forget">忘记密码? </a></span>
+        <p></p></div>
+    
+    <script type="text/javascript">
+        var i = "\u8BF7\u7A0D\u7B49..."
+        $("#fm1").submit(function() {
+            $(":submit").attr("disabled", true);
+            $(":submit").attr("value", i);
+            return true;
+        });
+    </script>
+    <div id="sidebar">
+    <div class="sidebar-content">
+        <p>出于安全考虑，一旦您访问过那些需要您提供凭证信息的应用时，请操作完成之后<a href="https://cas.sustech.edu.cn/cas/logout">登出</a>并关闭浏览器。</p>
+    </div>
+</div>
+
+</div>
+</div>
+            <div id="notices" class="col-sm-12 col-md-6">
+                <!--<div th:replace="fragments/insecure"/>--><div id="cookiesDisabled" class="alert alert-info" style="display:none;">
+    <h2>浏览器禁用了Cookies</h2>
+    <p>您的浏览器不支持Cookies，单点登录无法工作。</p>
+</div>
+<!--<div th:replace="fragments/cas-resources-list"/>--><!--<div th:unless="${param.wechat}">--><div>
+                <script type="text/javascript" src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/wwLogin-1.js"></script>
+<style>
+    .img-circle {
+        filter: gray;
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        -o-filter: grayscale(100%);
+        filter: grayscale(100%);
+    }
+
+    .img-circle.active, .img-circle:hover {
+        filter: none;
+        -webkit-filter: grayscale(0%);
+        -moz-filter: grayscale(0%);
+        -ms-filter: grayscale(0%);
+        -o-filter: grayscale(0%);
+    }
+    .impowerBox, .impowerBox .status_icon, .impowerBox .status_txt {
+        width:182px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .impowerBox {
+        line-height: 1.6;
+        position: relative;
+        width: 100%;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .impowerBox .title {
+        width: 160px;
+        height: 24px;
+        line-height: 24px;
+        margin: 0 auto;
+        color: #0082EF;
+        font-size: 20px;
+    }
+    .logo {
+        width: 29px;
+        height: 24px;
+        vertical-align: top;
+        margin-right: 8px;
+    }
+
+    .impowerBox .qrcode {
+        width: 280px;
+        margin-top: 6px;
+        vertical-align:top;
+    }
+
+    .impowerBox .info {
+        width: 280px;
+        margin: 0 auto
+    }
+
+    .impowerBox .status {
+        text-align: left;
+        color: #737C84;
+        font-size: 0;
+        margin-top: 10px;
+    }
+
+    .impowerBox .status.status_browser {
+        text-align: center;
+        padding: 2px 0;
+    }
+    .impowerBox .status.status_browser p:nth-child(2) {
+        display: none;
+    }
+
+    .impowerBox .status p {
+        font-size: 13px
+    }
+
+    .impowerBox .status_txt p {
+        top: -2px;
+        position: relative;
+        margin: 0
+    }
+    .impowerBox .icon38_msg {
+        display: inline-block;
+        width: 38px;
+        height: 38px;
+        background-size: 38px 38px;
+        background-position: left top;
+        background-repeat: no-repeat;
+        margin-right: 12px;
+    }
+    .impowerBox .icon38_msg.succ {
+        -webkit-animation: scaleBig 0.2s ease-out 0s;
+        -moz-animation: scaleBig 0.2s ease-out 0s;
+        -ms-animation: scaleBig 0.2s ease-out 0s;
+        -o-animation: scaleBig 0.2s ease-out 0s;
+        animation: scaleBig 0.2s ease-out 0s;
+    }
+    .status.status_succ .status_txt {
+        -webkit-animation: transformRight 0.2s ease-out 0s;
+        -moz-animation: transformRight 0.2s ease-out 0s;
+        -ms-animation: transformRight 0.2s ease-out 0s;
+        -o-animation: transformRight 0.2s ease-out 0s;
+        animation: transformRight 0.2s ease-out 0s;
+    }
+    .status.status_fail {
+        -webkit-animation: transformLeft 0.2s ease-out 0s;
+        -moz-animation: transformLeft 0.2s ease-out 0s;
+        -ms-animation: transformLeft 0.2s ease-out 0s;
+        -o-animation: transformLeft 0.2s ease-out 0s;
+        animation: transformLeft 0.2s ease-out 0s;
+    }
+    .impowerBox .status_succ,.impowerBox .status_fail {
+        margin-left: 26px;
+    }
+    .impowerBox .status_succ .status_txt h4,.impowerBox .status_fail .status_txt h4{
+        font-size: 18px;
+        line-height: 25px;
+        margin-bottom: 2px;
+    }
+    .impowerBox .status_succ .status_txt p,.impowerBox .status_fail .status_txt p{
+        font-size: 12px;
+        line-height: 17px;
+        color: #A1A7AC;
+    }
+    .impowerBox .icon38_msg.succ {
+        background-image: url("/cas/images/Succ_2x$38dc7620.png");
+    }
+
+    .impowerBox .icon38_msg.warn {
+        background-image: url("/cas/images/Fail_2x$f2bea9cb.png");
+        border-radius: 50%;
+        background-color: #ffffff;
+    }
+
+    .impowerBox .icon38_msg.error {
+        background-image: url("/cas/images/InfoBig_2x$4b9e452f.png");
+        border-radius: 50%;
+        background-color: #ffffff;
+    }
+
+    @-webkit-keyframes  scaleBig {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    @keyframes scaleBig {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    @-webkit-keyframes  transformRight {
+        0% {
+            opacity: 0;
+            transform: translateX(-15px);
+        }
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @keyframes transformRight {
+        0% {
+            opacity: 0;
+            transform: translateX(-15px);
+        }
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    @-webkit-keyframes  transformLeft {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @keyframes transformLeft {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    .logintitle{
+        height: 24px;
+        line-height: 24px;
+        margin: 0 auto;
+        color: #0082EF;
+        font-size: 20px;
+        text-align: center;
+    }
+    .logintitleWX{
+        height: 24px;
+        line-height: 24px;
+        margin: 0 auto;
+        color: #13ef00;
+        font-size: 20px;
+        text-align: center;
+    }
+</style>
+<div id="myTabTitle" class="row">
+    <div align="center">
+        <h2 style="color:white;"><a href="#wechatLogin" data-toggle="tab" onclick="hideWechatQR()"><img id="weworkImg" class="img-circle active" src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/wework.png" width="56px" height="56px"></a> | <a href="#weixin" data-toggle="tab" onclick="showWechatQR()"><img id="wechatImg" class="img-circle" src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/wechat.png" width="56px" height="56px"></a></h2>
+    </div>
+</div>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="wechatLogin">
+        <div align="center"><div class="logintitle">企业微信登录</div><div id="wx_reg"><iframe src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/qrConnect.html" scrolling="no" width="300px" height="400px" frameborder="0"></iframe></div></div>
+    </div>
+
+    <div class="tab-pane fade" id="weixin" style="height:405px;">
+        <div align="center"> <div class="logintitleWX">微信登录</div>
+            <div class="impowerBox" style="width:280px;height:400px;display:block;">
+                <div id="qrcode" style="background-color:white;width:280px;height:280px;padding:6px;margin-top: 20px;" title=""><canvas width="268" height="268" style="display: none;"></canvas><img style="display: block;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQwAAAEMCAYAAAAxjIiTAAAWVUlEQVR4nO2UQZIly45Cc/+b7p58q1HcLAI/yHXrgVnMQgghOT8/Pz//d/NTcVLrgJwn6c0N36dnTt7bVv/SPhx8dwWcmJXEhoOf1unyb/VP4d/qX9qHg++ugBOzkthw8NM6Xf6t/in8W/1L+3Dw3RVwYlYSGw5+WqfLv9U/hX+rf2kfDj5PvAv3QKh+6tG42sl5kj64deTBq/1cnS6SIZL2j0QDo4HRwDC5GhgNjNf9GhgNjAZGA6OB8VJDA6OB0cBoYMgaGhgNjNdLdA0k+7lDu0g+Onfm5HF/4qdmdvvdCAdXQ3IXJ/MccDUwVJCPjvKU3I2qnZrZ7Zfc6YnvpA8K18k8B1wNDBXko6M8JXejaqdmdvsld3riO+mDwnUyzwFXA0MF+egoT8ndqNqpmd1+yZ2e+E76oHCdzHPA1cBQQT46ylNyN6p2ama3X3KnJ76TPihcJ/MccO0LDFIDefBJkP4ljzT9OCmeb9+zUqvyNzAaGA2Mf3zPSq3K38BoYDQw/vE9K7UqfwOjgdHA+Mf3rNSq/P98YGw9JNh45FOR1PAtXpFayTp3h6R/L7juilD7KTjRNTlz8pDpeaa139akaiXr3B2S/r3guitC7afgRNfkzMlDpueZ1n5bk6qVrHN3SPr3guuuCLWfghNdkzMnD5meZ1r7bU2qVrLO3SHp3wuuuyLUfgpOdE3OnDxkep5p7bc1qVrJOneHpH8vuDzxLqaHdjTRj8Dt6fIo/53A3aHyz/Sjm97zCW6/1QbGYb8GRgOD8OoGl9OvgXHYr4HRwCC8usHl9GtgHPZrYDQwCK9ucDn9GhiH/RoYDQzCqxtcTr/HwJj+VKHKfy7XdL9qr3aC69J3VwBpoMu1YfnVXu3Ofxe+uwJIA12uDcuv9mp3/rvw3RVAGuhybVh+tVe789/496jsMlTxSp3Cn9ae5Lox823/Th5YUmey3xasnKiBoXM1MBoYk1g5UQND52pgNDAmsXKiBobO1cBoYExi5UQNDJ2rgdHAmMSPO7RrTNLkbwoM9eAor6h+aa0k94Y6EpQ3h54y5pBDu0hrT2pIPkKyX1oryb2hjgTlzaGnjDnk0C7S2pMako+Q7JfWSnJvqCNBeXPoKWMOObSLtPakhuQjJPultZLcG+pIUN4cesqYQw7tIq09qSH5CMl+aa0k94Y6EpQ3R55S4imezQdBanf5k5g+wBv+bbhbl9/5541W6aMGongaGL/zJ9HAYLkbGL+IoHgaGL/zJ9HAYLkbGL+IoHgaGL/zJ9HAYLkbGL+IoHgaGL/zJ9HAYLn/s4GRfJjTj+JE10bt7nxbsdV3Raf638agaWAczvMt2t35tmKr74pO9b8GxhKzVDQwGhgJnep/DYwlZqloYDQwEjrV//6pwHAHcocmjScNdLHhmJ9AeXVS5/pC1Z08Hhfk3VLfUT/KwAYGz0WigdHAaGA0MGQ0MBoYDYwGhowGRgOjgdHAkNHAaGBEAuNbhiYXTc6jwu1H4fZeTrzaqmEDXJ2yZytEXD4Ich4Vbj8Kt/dCP9YNGjbA1Sl7tkLE5YMg51Hh9qNwey/0Y92gYQNcnbJnK0RcPghyHhVuPwq390I/1g0aNsDVKXu2QsTlgyDnUeH2o3B7L/Rj3aBhA1ydsmd24fBjdbHhaKa9IesULrJO0aWC1OD226AdvXdn6AZGAyNVp+hS0cB4/u9oHmfoBkYDI1Wn6FLRwHj+72geZ+gGRgMjVafoUtHAeP7vaB5K/JEI6CORfqzuPJQ3J55SB5j2JclP4srDd7nchi4aGJ//a2A0MBoYhvgGRgOjgcFpaGA0MBoYQl2Sn0QD41B8A6OB0cDgNKCBQS0jfbgnQwomYNzkLK6u6XmmNaS1Uzon+JO39uFrYDQwzuaZ1pDWTulsYDQwLK4GRgMjxd/AaGAc62pgnGmndDYwGhgWVwOjgZHivx4Y33RslGHT/U5mnuZS+FUNSY+nd5HsT/PDb44b0hn6UDxi6nS/k5mnuRR+VUPS4+ldJPvT/PCb44Z0hj4Uj5g63e9k5mkuhV/VkPR4ehfJ/jQ//Oa4IZ2hD8Ujpk73O5l5mkvhVzUkPZ7eRbI/zQ+/OW5IVwTFn677G8+Nz9WVxrT2aW+m655q03UfuBoYVP8GxrmGBoZem677wNXAoPo3MM41NDD02nTdB64GBtW/gXGuoYGh16brPnA1MKj+DYxzDQ0MvTZd98j1N/KTw1XEk4/FPRpXp1pH8isgjznJRWpXQepK3ig5H8nVwIAfNHmALpKPnOQitasgdSVvlJyP5GpgwA+aPEAXyUdOcpHaVZC6kjdKzkdyNTDgB00eoIvkIye5SO0qSF3JGyXnI7kaGPCDJg/QRfKRk1ykdhWkruSNkvORXFJg2ORhA6kDJB+Kq0Gtmz5cUkPyc33fuBuVn4SsVykkG1L9nmpVXZR2V+eGoyQPd8Pn+r5xNyo/CVmvUkg2pPo91aq6KO2uzg1HSR7uhs/1feNuVH4Ssl6lkGxI9XuqVXVR2l2dG46SPNwNn+v7xt2o/CRkvUoh2ZDq91Sr6qK0uzo3HCV5uBs+1/eNu1H5Sch6kw2m66YfgcpN+Xly8KR2yhsVGx5d8rEq/eg7Vfo9/pccaLouzUU+OleT24/UTnmjYvrWSO0uqBs9ub/H/5IDTdeluchH52py+5HaKW9UTN8aqd0FdaMn9/f4X3Kg6bo0F/noXE1uP1I75Y2K6VsjtbugbvTk/h7/uy2eXD5pKKk9OY+rfSuSj0LlV+rSmN6h7DVK1sBQ7ETncbVvRQPjs87pfg2MBsZ6NDA+65zu18BoYKxHA+Ozzul+DYwGxno0MD7rnO734csdriLsBqYfXZrLned2HX1bSdwOKLUn6XED44WGBka+roHRwHg90A00MHbUNTAaGK8HuoEGxo66BkYD4/VAN9DA2FHXwPgHAsM14sbQSSj90pqS/rl1G4LmxKvbYeR6TPtwoKuB4WpvYDQw3qKB0cBoYAxrOPGqgXGsq4Hham9gNDDe4p8LDFfsDSPc5U/P7GJg+aPab9/Hlvuj/EvXffhv9vFsWNj0zC5crvQupjVQ97Hl/ij/0nUf/pt9PBsWNj2zC5crvYtpDdR9bLk/yr903Yf/Zh/PhoVNz+zC5UrvYloDdR9b7o/yL1334b/Zx7NhYdMzu3C50ruY1kDdx5b7o/xL1334L/foXB73P/cgNhzl9AGq8zncE8ec9Cqp/aTfdN2Hr4HRwDjT0MBoYCANyAEbGGdoYJyhgdHAQDQ0MBoYDQyoATlgA+MMDYwzNDD+96Fkwc/Fbe70o6O1JneT7OfWkvcw6cGtN9fACHOr/O7DoLUmdxM9ZLOWvIdJD269uQZGmFvldx8GrTW5m+ghm7XkPUx6cOvNNTDC3Cq/+zBorcndRA/ZrCXvYdKDW2/ODgznH9pUVwP5CFwkH2d6vqR2pZ+qKck13U9F+pYbGA2MVdqVfqqmJFcD41BEA+MdGhh+P1VTkquBcSiigfEODQy/n6opydXAOBTRwHiHBobfT9WU5PrPBkbySJX/VK4NB5hcPvkI09pv+7ABN7ya3v2Hr4HhalDrHE0nHqS13/ZhA254Nb37D18Dw9Wg1jmaTjxIa7/twwbc8Gp69x++BoarQa1zNJ14kNZ+24cNuOHV9O4/fA0MV4Na52g68SCt/bYPG3DDq+ndP36CN1LT5INWByeNd3WSM5LayUe3IbSm65JBNv123LoGRgPDQgOjgXE8UAOjgfHbPw0MXjups4HRwEDqXK4Gho4GRgMDmZHU3sA4q2tg/PlyB5/+KKT7k8f8zZ+L6RtNc1HcroZDvtllbDhAapYT/qSurZ+L6RtNc1HcroZDvtllbDhAapYT/qSurZ+L6RtNc1HcroZDvtllbDhAapYT/qSurZ+L6RtNc1HcroYjPtn9vzRVjUiaRWpQuTbWKdjgO6nL1eDy3/Bqel+P36fF/Q3TC5s+GpVrY52CDb6TulwNLv8Nr6b39fh9WtzfML2w6aNRuTbWKdjgO6nL1eDy3/Bqel+P36fF/Q3TC5s+GpVrY52CDb6TulwNLv8Nr6b39fh9WtzfML2w6aNRuTbWKdjgO6nL1eDy3/Bqel+PHyVeBXmo33I0pA9Jj12QM39znctF3l8aDYwXmqi6Ex+SHrtIP8RvqXO5yPtLo4HxQhNVd+JD0mMX6Yf4LXUuF3l/aTQwXmii6k58SHrsIv0Qv6XO5SLvL40GxgtNVN2JD0mPXaQf4rfUuVzk/aXxM31cDwLGH4rLlaz7Jg3uo5vWkMTW3Sj/nfA3MF5wJeu+SUMDY+9ulP9O+BsYL7iSdd+koYGxdzfKfyf8DYwXXMm6b9LQwNi7G+W/E35bLZxa6w6Q/KY1uB64/23wivQ4qcH1mJ7H5pbYTCNcYWodpT39TWtwPXD/2+AV6XFSg+sxPY/NLbGZRrjC1DpKe/qb1uB64P63wSvS46QG12N6HptbYjONcIWpdZT29DetwfXA/W+DV6THSQ2ux/Q8NrfEZhrhClPrKO3pb1qD64H73wavSI+TGlyP6XkOuN+Tnwzt1rmHq3Cl5yEfXVLnVrgPJfnAbuhU+im6DudpYKTncbWTM1N1NzAVFIk3kNRF3vuLeRoY6Xlc7eTMVN0NTAVF4g0kdZH3/mKeBkZ6Hlc7OTNVdwNTQZF4A0ld5L2/mKeBkZ7H1U7OTNXdwFRQJN5AUhd57/I87tBJ8eklUtpvfK4myqsNPqi4rZPWnoQ8g1voDugeJGkEpX3DwZGH+i0+qLitk9aehDyDW+gO6B4kaQSlfcPBkYf6LT6ouK2T1p6EPINb6A7oHiRpBKV9w8GRh/otPqi4rZPWnoQ8w22hqviNdSTcg0trTz6M9EMk/XP7kSGiIB1aDYyDOhINjAYGgQZGA6OB0cCQ0cBoYDQwGhgyGhgNjAZGA0NGPDAo413x5EG4uLFE5Z/kQznRTh1gGsm9uvshdzi95wbG4XwkfwODRwODn6eBcTAfyd/A4NHA4OdpYBzMR/I3MHg0MPh5GhgH85H8DQweDQx+HszBkwO3xQfDKK2LwpWj+ZI9b9SwYWbVh8f/7A5Cw61LdE3esFhFE8mVnG/DXqc1bJhZ9eHxP7uD0HDrEl2TNyxW0URyJefbsNdpDRtmVn14/M/uIDTcukTX5A2LVTSRXMn5Nux1WsOGmVUfHv+zOwgNty7RNXnDYhVNJFdyvg17ndawYWbVh8f/7EJTPMV9sgx3ZgXpxVLabxwlpeGEK+0N1c8F+U4eP1c8tViX+8QId2YFGx4dqXNaO3VX9ANOepW+P3Q+Vzy1WJf7xAh3ZgUbHh2pc1o7dVf0A056lb4/dD5XPLVYl/vECHdmBRseHalzWjt1V/QDTnqVvj90Plf85IBq7UnP6XmoR+DqOpln+mEmubZqJ+He2uN/dmEDQ+Z2tTcwGhgEGhiHGhoYDYzf6jZoJ9HAONTQwGhg/Fa3QTuJBsahhgZGA+O3ug3aSawIDKXuX/sor1Sk+ZV+lFc3+lE6T7Qn+dU6V/vj5zR0B/z2j/JKRZpf6Ud5daMfpfNEe5JfrXO1P35OQ3fAb/8or1Sk+ZV+lFc3+lE6T7Qn+dU6V/vj5zR0B/z2j/JKRZpf6Ud5daMfpfNEe5JfrXO1P35OQ3fAb/8or1Sk+ZV+lFc3+lE6T7Qn+dU6V/uH767x7tDpuvRH6drgw7QGFe7jIXWRXiV9V/GTNOtAFHZsbl36o3Rt8GFagwql9mSe6Uee9F3FT9KsA1HYsbl16Y/StcGHaQ0qlNqTeaYfedJ3FT9Jsw5EYcfm1qU/StcGH6Y1qFBqT+aZfuRJ31VIbNMPZ+rREkeZRNK/DbrIfulHRz1W8v7Sd/uozS4MPsxkP3JhaST926CL7EdqIH13Z3F9IfGozS4MPsxkP3JhaST926CL7EdqIH13Z3F9IfGozS4MPsxkP3JhaST926CL7EdqIH13Z3F9IfGozS4MPsxkP3JhaST926CL7EdqIH13Z3F9IfFB23c8sOTj2bowF9P7mua/gQsPMxaSJ/tqYDQwIv2S/DfQwPjD1cBoYPD9kvw30MD4w9XAaGDw/ZL8N9DA+MPVwGhg8P2S/DfQwPjD5TXcYITbz53vwOTYwZHc6SN1tZMHT2lw+U903Z75f18Do4HxmauB8fyfy3+i6/bMDYxDA1U0MBoYDQxo6AbGGRoYDYy3QANjwyM/GXzy8ZxwOf88/Zfu52qYrks/fBfT70nRcDhPAyPN3cDI1zUwdA2H8zQw0twNjHxdA0PXcDhPAyPN3cDI1zUwdA2H8zQw0twNjHxdA0PXcDTPUbXTEDSLqlO53flIX1yQh5t8AEkPnvjTXjmaJny2ddlspIjh43K53flIX1ykj/L2Tl0f0l45miZ8tnXZbKSI4eNyud35SF9cpI/y9k5dH9JeOZomfLZ12WykiOHjcrnd+UhfXKSP8vZOXR/SXjmaJny2ddlspIjh43K53flIX1ykj/L2Tl0f0l45miZ8tnXZbEGkjUkebnqJCrY+Oucfep7kY3L7pR85ydXAaGAc86sanH/oeRoYZ1wNjAbGMb+qwfmHnqeBccbVwGhgHPOrGpx/6HkaGGdcDYwGxjG/qsH5h56ngXHG9eM+Tuo7GfqbD9dFUifpg+vN7Xu8sfsN9/5Cw3csZ9pAlYs6GhVJnaQPrje37/HG7jfc+wsN37GcaQNVLupoVCR1kj643ty+xxu733DvLzR8x3KmDVS5qKNRkdRJ+uB6c/seb+x+w72/0LDv4F2utPHph+jM7Go/wbc8zA26bt8HzdXAaGAca9jwMEmdpK7b99HA+IWrgaFrP0EDo4HRwDC4GxgNjAZGGA2MBkYD4+/cLlYERtL4E/HOP+l+5KfqSu5wY7/pPZ/Md9sXep6f5PIVLhXuMlxsWL6qK7nDjf2m93wy321f6Hl+kstXuFS4y3CxYfmqruQON/ab3vPJfLd9oef5SS5f4VLhLsPFhuWrupI73Nhves8n8932hZ7nJ7l8hUuFuwwXG5av6krucGO/6T2fzHfbF3qen+TyFS61XxLk8qc1fEs/Upda5/ZL1qlcpA/wG29gNDAaGA2MBoaMBkYDo4HRwJDRwGhgNDC+ODCmjSBn3nBIGz5lHnVmEtP3TnE/8ZN1L7TOGugeA9WPrCMPKa1h+lPmUWcmMX3vFPcTP1n3Quusge4xUP3IOvKQ0hqmP2UedWYS0/dOcT/xk3UvtM4a6B4D1Y+sIw8prWH6U+ZRZyYxfe8U9xM/WfdC66yB7jFQ/cg68pDSGqY/ZR51ZhLT905xP/GTdS+05pajiFCFUv1OjHc1ffOjGzjAmO/UfKp2tx/58Af8amA0MN5pd/s1MBoYTsOvOPgGhs7VwGhgxPAtB9/A0LkaGA2MGL7l4BsYOlcD4z8cGNPfiakHQ69b2PTyT7ipOvceXO6T+6Pm2/B2Tmb+mR6SXL4LSiupMz2z0s+tPenp3IPLTT8eSsP02zmZ+Wd6SHL5LiitpM70zEo/t/akp3MPLjf9eCgN02/nZOaf6SHJ5bugtJI60zMr/dzak57OPbjc9OOhNEy/nZOZf6aHJJfvgtJK6kzPrPRza096OvfgctOPh9Iw/XZOZv5/zaHxYQf8bKAAAAAASUVORK5CYII="></div>
+                <div class="info">
+                    <div class="status status_browser js_status" id="wx_default_tip"><p>使用微信扫描二维码登录</p></div>
+                    <div class="status status_succ js_status" style="display:none" id="wx_after_scan"><i class="status_icon icon38_msg succ"></i><div class="status_txt"><h4>扫码成功</h4><p>请在微信中点击确认即可登录</p></div></div>
+                    <div class="status status_fail js_status" style="display:none" id="wx_after_cancel"><i class="status_icon icon38_msg warn"></i><div class="status_txt"><h4>您已取消此次登录</h4><p>您可<a onclick="showWechatQR()">刷新</a>后再次扫描登录</p></div></div>
+                    <div class="status status_fail js_status" style="display:none" id="wx_after_warning"><i class="status_icon icon38_msg error"></i><div class="status_txt"><h4>微信认证异常</h4><p>您可刷新页面后再次扫描登录，或用其他方式登录</p></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/qrcode.js"></script>
+<script>
+    if(areCookiesEnabled()){
+        window.WwLogin({
+            "id" : "wx_reg",
+            "appid" : "wx8839ace7048d181b",
+            "agentid" : "1000053",
+            "redirect_uri" :"https%3A%2F%2Fcas.sustech.edu.cn%2Fcas%2Flogin%3Fwechat%3Dsuccess",
+            "state" : "nIjOzGqFXZewHsSJ",
+            "href" : "https://cas.sustc.edu.cn/cas/css/wechat.css",
+        });
+        var timer = null;
+        var state = "nIjOzGqFXZewHsSJ";
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https:\/\/open.weixin.qq.com\/connect\/oauth2\/authorize?appid=wx8839ace7048d181b\u0026response_type=code\u0026scope=snsapi_base\u0026state=nIjOzGqFXZewHsSJ\u0026redirect_uri=https%3A%2F%2Fcas.sustech.edu.cn%2Fcas%2Flogin%3Fwechat%3Dcallback\u0026a=1#wechat_redirect",
+            width: 268,
+            height: 268,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.L
+        });
+        document.getElementById("qrcode").title = "";
+    }else{
+        $("#myTabContent").hide();
+        $("#myTabTitle").hide();
+    }
+    function showWechatQR(){
+        $('#wechatImg').addClass('active');
+        $('#weworkImg').removeClass('active');
+        changeStatus("default");
+        timer = window.setInterval(showalert, 5000);
+    }
+    function hideWechatQR(){
+        clearInterval(timer);
+        $('#wechatImg').removeClass('active');
+        $('#weworkImg').addClass('active');
+    }
+    function showalert() {
+        $.get("?wechat=check&state="+state, {
+        }, function(data) {
+            var temp = eval(data);
+            if(temp.status == 'cancel'){
+                clearInterval(timer);
+                changeStatus(temp.status)
+                window.event.returnValue = false;
+                //window.location.reload();
+            }else if(temp.status == 'success'){
+                clearInterval(timer);
+                PostSubmit('',temp)
+            }else if(temp.status == 'waiting'){
+                changeStatus(temp.status)
+            }else if(temp.status =='nocode'){
+                clearInterval(timer);
+                changeStatus(temp.status)
+            }
+        });
+    }
+    function changeStatus(status){
+        if(status === 'cancel'){
+            $("#wx_default_tip").hide();
+            $("#wx_after_scan").hide();
+            $("#wx_after_cancel").show();
+            $("#wx_after_warning").hide();
+        }else if(status === 'waiting'){
+            $("#wx_default_tip").hide();
+            $("#wx_after_scan").show();
+            $("#wx_after_cancel").hide();
+            $("#wx_after_warning").hide();
+        }else if(status === 'default'){
+            $("#wx_default_tip").show();
+            $("#wx_after_scan").hide();
+            $("#wx_after_cancel").hide();
+            $("#wx_after_warning").hide();
+        }else{
+            $("#wx_default_tip").hide();
+            $("#wx_after_scan").hide();
+            $("#wx_after_cancel").hide();
+            $("#wx_after_warning").show();
+        }
+    }
+    function areCookiesEnabled() {
+        if ($.cookie == undefined) {
+            console.log("JQuery Cookie library is not defined")
+            return;
+        }
+
+        $.cookie('cookiesEnabled', 'true');
+        var value = $.cookie('cookiesEnabled');
+        $.removeCookie('cookiesEnabled');
+        return value != undefined;
+
+    }
+</script>
+
+
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer>
+    <div id="copyright" style="text-align: center">
+        <p>版权所有 © 2017 南方科技大学</p>
+        <p>网络信息中心技术支持，电话：0777</p>
+        <!--<p>Powered by <a href="http://www.apereo.org/cas">--><!--Apereo Central Authentication Service--><!--<span th:text="${T(org.apereo.cas.util.CasVersion).getVersion()}"></span>--><!--<span th:text="${T(org.apereo.cas.util.CasVersion).getDateTime()}"></span> </a>--><!--</p>--></div>
+</footer>
+</div>
+<div><!--<script src="//cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js"></script>-->
+<script src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/head.js"></script>
+<script type="text/javascript" src="%E7%99%BB%E5%BD%95%20-%20CAS%20%E2%80%93%20Central%20Authentication%20Service_files/cas.js"></script>
+
+
+
+
+</div>
+
+
+
+</body></html>
